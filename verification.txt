@@ -1,0 +1,50 @@
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/5)
+ipv4.method:                            manual
+ipv4.addresses:                         10.0.0.2/24
+ipv4.gateway:                           10.0.0.1
+ipv4.dns:                               10.0.0.1
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 10.0.0.2/24 brd 10.0.0.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+default via 10.0.0.1 dev eth0 proto static metric 100 
+10.0.0.0/24 dev eth0 proto kernel scope link src 10.0.0.2 metric 100 
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.865 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.292 ms
+64 bytes from 10.0.0.1: icmp_seq=3 ttl=64 time=0.290 ms
+
+--- 10.0.0.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2024ms
+rtt min/avg/max/mdev = 0.290/0.482/0.865/0.270 ms
+104.18.5.159    STREAM www.kali.org
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+
+HTTP/2 200 
+date: Thu, 29 Oct 2026 22:01:35 GMT
+content-type: text/html; charset=utf-8
+cache-control: max-age=600
+x-frame-options: SAMEORIGIN
+expires: Thu, 29 Oct 2026 22:11:35 UTC
+last-modified: Mon, 26 Oct 2026 08:04:00 GMT
+permissions-policy: interest-cohort=()
+vary: Origin
+vary: Accept-Encoding
+x-request-id: 01M64TXHKRM9E84S5ANW2SEMQ3
+x-xss-protection: 1; mode=block
+cf-cache-status: DYNAMIC
+strict-transport-security: max-age=2592000
+expect-ct: max-age=86400, enforce
+referrer-policy: same-origin
+x-content-type-options: nosniff
+server: cloudflare
+cf-ray: a52575aa09f9a087-ATL
+
+  0      0   0      0   0      0      0      0                              0
+  0      0   0      0   0      0      0      0                              0
+  0      0   0      0   0      0      0      0                              0
+  0      0   0      0   0      0      0      0                              0
+TARGET              SOURCE    FSTYPE OPTIONS
+/media/sf_downloads downloads vboxsf rw,nodev,relatime
+Downloads share readable by kali
+Downloads share writable by kali

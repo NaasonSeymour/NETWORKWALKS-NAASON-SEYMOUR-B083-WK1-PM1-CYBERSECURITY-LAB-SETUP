@@ -1,0 +1,37 @@
+[
+  {
+    "FileName": "01-VirtualBox-NAT-Network-10.0.0.0-24.jpg",
+    "Bytes": 54051,
+    "SHA256": "4C245845D356B87A9DFE1A3ECC213AD5621C714E607DCB3AF75125F8B4BD16DB"
+  },
+  {
+    "FileName": "02-Kali-VM-Network-Attached-to-NAT-Network.jpg",
+    "Bytes": 46318,
+    "SHA256": "2AC72613132FDA5BDF0241F062EEE489665A2E318699DF5AA4209A9AF300D35A"
+  },
+  {
+    "FileName": "03-Kali-VM-Shared-Clipboard-and-Drag-and-Drop.jpg",
+    "Bytes": 44496,
+    "SHA256": "14E3F1C22B9E6FB0FB84B44613AE8CDF9B00648948E79D1CE069082B4784EE7F"
+  },
+  {
+    "FileName": "04-Shared-Folders-Windows-Downloads-Mapped-to-Kali.jpg",
+    "Bytes": 186961,
+    "SHA256": "622F21A91F609730C758F077109107086A6C6EC5BFAA17155AD60F52C63E0FDC"
+  },
+  {
+    "FileName": "05-Kali-IPv4-10.0.0.2-24-Gateway-and-DNS.jpg",
+    "Bytes": 120013,
+    "SHA256": "D463E9491EDDFC8DB60C1DB55907116B373E2F559B32BB9CF4F1F658CE0BFF09"
+  },
+  {
+    "FileName": "06-Kali-Desktop-Internet-Browser-Test.jpg",
+    "Bytes": 137825,
+    "SHA256": "87FA1890D0C0543AC6E33C757AFE9ACB1DADB8D144AB5C3EBC690BDC4C429D8B"
+  },
+  {
+    "FileName": "07-VirtualBox-Clean-Setup-Snapshot.jpg",
+    "Bytes": 63587,
+    "SHA256": "55A93D712B0F1A657BFCC335BABBFC4CA5FBAD779F1A6E845A85C1E8DA598AAA"
+  }
+]

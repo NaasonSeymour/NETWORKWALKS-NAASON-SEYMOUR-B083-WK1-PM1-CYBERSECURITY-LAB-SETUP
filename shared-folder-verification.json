@@ -1,0 +1,5 @@
+{
+  "HostToGuestFileRead": true,
+  "GuestToHostFileWrite": true,
+  "GuestPath": "/media/sf_downloads/WK1-PM1-share-check/share-check.txt"
+}

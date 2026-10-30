@@ -1,0 +1,5 @@
+{
+  "HostToGuestClipboard": true,
+  "GuestToHostClipboard": true,
+  "HostToGuestFormat": "UTF8_STRING"
+}

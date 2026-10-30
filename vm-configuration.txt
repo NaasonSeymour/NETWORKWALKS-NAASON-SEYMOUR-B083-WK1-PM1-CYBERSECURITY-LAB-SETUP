@@ -1,0 +1,20 @@
+# Selected VirtualBox configuration fields (sensitive local identifiers and paths omitted)
+# Transcribed from actual local VM configuration; screenshot 04 has the host
+# Windows user-profile folder path hidden for privacy.
+name="Kali - WK1-PM1"
+platformArchitecture="x86"
+ostype="Debian (64-bit)"
+memory=4096
+vram=128
+cpus=2
+VMState="poweroff"
+nat-network1="WK1-PM1-NAT"
+nic1="natnetwork"
+cableconnected1="on"
+clipboard="bidirectional"
+draganddrop="bidirectional"
+SharedFolderNameMachineMapping1="downloads"
+SharedFolderPathMachineMapping1="[redacted Windows host Downloads folder]"
+SnapshotName="Clean Kali - WK1-PM1"
+SnapshotName-1="Clean Kali - WK1-PM1 - Verified"
+CurrentSnapshotName="Clean Kali - WK1-PM1 - Verified"
