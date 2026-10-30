@@ -2,108 +2,141 @@
 
 **Participant:** Naason Seymour  
 **Batch:** B083  
-**Week / project:** WK1-PM1
+**Project:** Week 1, Project Module 1
 
-This project documents one Kali Linux virtual machine on a Windows PC for an owned cybersecurity training lab.
+## Project Overview
 
-**Status:** The required lab configuration is complete. Kali boots, uses the required NAT Network and static IPv4 address, loads a live website, exchanges clipboard text in both directions, and reads/writes the Windows Downloads share. A clean powered-off baseline snapshot was saved, restored, and booted successfully. Course publication and submission are pending.
+A Kali Linux virtual machine was configured in Oracle VirtualBox on a Windows 11 PC to create a controlled environment for cybersecurity practice. The setup includes a custom NAT Network, a manually assigned IP address, internet connectivity, file sharing between Windows and Kali Linux, and a clean virtual machine snapshot.
 
-## Host and software
+The completed Kali VM uses the `10.0.0.0/24` network with the address `10.0.0.2/24`. Connectivity, clipboard sharing, the shared Downloads folder, and snapshot restoration were tested successfully.
+
+## System Configuration
 
 | Component | Configuration |
 |---|---|
-| Host | Windows 11 Pro, 64-bit |
+| Host operating system | Windows 11 Pro, 64-bit |
 | Processor | AMD Ryzen 7 3700X, hardware virtualization enabled |
-| Host memory | Approximately 16 GB |
-| VirtualBox | 7.2.22 r175245, official Oracle Windows installer |
-| Kali | Official prebuilt VirtualBox image, Kali Linux 2026.3 amd64 |
+| Host memory | Approximately 16 GB RAM |
+| VirtualBox | 7.2.22 r175245 |
+| Guest operating system | Kali Linux 2026.3 amd64, prebuilt VirtualBox image |
 | VM name | Kali - WK1-PM1 |
 | VM resources | 4 GB RAM, 2 CPU cores, VMSVGA, 128 MB video memory |
 
-The Oracle installer checksum matched the official SHA-256 manifest and had a valid Oracle America digital signature. The Kali archive checksum matched the value published on the official Kali download page.
+The VirtualBox installer passed its SHA-256 checksum and Oracle digital-signature checks. The Kali Linux archive checksum also matched the value published on its official download page.
 
-## Network and integration
+## Network and Integration Settings
 
-| Setting | Value |
+| Setting | Configuration |
 |---|---|
-| VirtualBox network | WK1-PM1-NAT |
-| Attachment type | NAT Network |
-| Network prefix | 10.0.0.0/24 |
-| Kali IPv4 address | 10.0.0.2/24, manual |
-| Gateway | 10.0.0.1 |
-| DNS | 10.0.0.1, course-documented alternate |
-| DHCP | Disabled for this single-VM static-address lab |
-| Promiscuous mode | Allow All, as demonstrated by the course |
+| NAT Network name | WK1-PM1-NAT |
+| Network type | NAT Network |
+| Network range | `10.0.0.0/24` |
+| Kali IPv4 address | `10.0.0.2/24` (manual) |
+| Default gateway | `10.0.0.1` |
+| DNS server | `10.0.0.1` |
+| DHCP | Disabled for this single-VM setup |
+| Promiscuous mode | Allow All |
 | Shared clipboard | Bidirectional |
 | Drag and drop | Bidirectional |
-| Shared folder | Host Windows Downloads folder, share name downloads |
-| Guest mount | /media/sf_downloads, permanent and automatically mounted |
+| Shared folder | Windows Downloads, shared as `downloads` |
+| Kali shared-folder mount | `/media/sf_downloads` (automatic mount) |
 
-Only one VM is registered in this new lab. No second VM is using the assigned lab address.
+Only one virtual machine was configured on this NAT Network, so the assigned Kali address does not conflict with another VM in the lab.
 
-## Steps performed and evidence
+## Setup Process
 
-1. Installed the verified official VirtualBox Windows application and required virtualization driver.
-2. Created and enabled the NAT Network with the required prefix.
-   ![VirtualBox NAT Network](screenshots/01-VirtualBox-NAT-Network-10.0.0.0-24.jpg)
-3. Extracted the verified official Kali prebuilt archive and registered its .vbox file.
-4. Assigned the VM to the lab NAT Network and set its resources.
-   ![Kali Adapter 1 attached to the correct NAT Network](screenshots/02-Kali-VM-Network-Attached-to-NAT-Network.jpg)
-5. Enabled bidirectional clipboard and drag and drop and added the permanent Downloads share.
-   ![Both bidirectional integration settings in the VM Features tab](screenshots/03-Kali-VM-Shared-Clipboard-and-Drag-and-Drop.jpg)
-   Clipboard transfer was tested successfully in both directions; see the [clipboard check](clipboard-verification.json). Drag and drop is enabled in both directions; a file drag-and-drop transfer was not separately tested. The Downloads mapping and automatic mount are also recorded in the [selected VirtualBox configuration report](vm-configuration.txt), with host-identifying values omitted for public sharing.
-   ![Permanent Windows Downloads mapping, downloads share name, and automatic mounting](screenshots/04-Shared-Folders-Windows-Downloads-Mapped-to-Kali.jpg)
-   A harmless test file created in Windows was read and updated inside Kali, and Windows then read the guest's update. See the [shared-file check](shared-folder-verification.json). The settings screenshot shows the shared-folder mapping, with the host Windows user-profile path redacted for privacy; share name, access, and auto-mount settings remain visible.
-6. Booted Kali and configured its NetworkManager profile with a manual address, gateway, and DNS.
-   ![Kali manual IPv4 settings](screenshots/05-Kali-IPv4-10.0.0.2-24-Gateway-and-DNS.jpg)
-7. Verified the guest address and route, successful gateway replies, DNS resolution, successful HTTPS access to the Kali website, and read/write permissions on the Downloads mount. See [captured verification output](verification.txt).
-   ![Live HTTPS website loaded in Firefox inside Kali](screenshots/06-Kali-Desktop-Internet-Browser-Test.jpg)
-8. Shut the guest down, saved **Clean Kali - WK1-PM1**, restored that baseline, and booted it again. The static address, DNS, HTTPS access, and Downloads mount passed the [post-restore checks](post-restore-verification.txt). After the logged-in browser, clipboard, and shared-file checks, shut the guest down cleanly again and saved **Clean Kali - WK1-PM1 - Verified** as the final baseline. See the [snapshot record](snapshot.txt).
-   ![Saved clean Kali baseline snapshot](screenshots/07-VirtualBox-Clean-Setup-Snapshot.jpg)
+### 1. Install VirtualBox
 
-The screenshots above are captures of this lab; screenshot 04 has only its host Windows user-profile path redacted for privacy. During the evidence audit, VirtualBox's Settings dialog opened successfully. The adapter, integration, and Shared Folders screenshots now show the exact settings pages requested in the guide. The older summary, separate runtime menus, and mounted-folder screenshots have been preserved locally outside this publication package.
+Installed Oracle VirtualBox on the Windows host and enabled the components needed to run virtual machines.
 
-## Evidence audit and required filenames
+### 2. Create the NAT Network
 
-All eight local setup steps and all seven screenshot categories were checked against the supplied requirements on October 29, 2026. The guide numbers the screenshot categories 01–07, separately from setup steps 01–08. Windows-safe descriptive filenames preserve that evidence numbering; slashes and colons from the guide's descriptions are replaced with hyphens.
+Created `WK1-PM1-NAT` with the `10.0.0.0/24` network range.
 
-| Evidence | Filename in screenshots/ | Result |
-|---|---|---|
-| 01 — NAT Network prefix | 01-VirtualBox-NAT-Network-10.0.0.0-24.jpg | Captured; 10.0.0.0/24 visible |
-| 02 — Kali VM Network settings | 02-Kali-VM-Network-Attached-to-NAT-Network.jpg | Captured; Adapter 1 enabled, NAT Network and WK1-PM1-NAT visible |
-| 03 — Clipboard and drag and drop | 03-Kali-VM-Shared-Clipboard-and-Drag-and-Drop.jpg | Captured together; both Bidirectional |
-| 04 — Host Downloads mapping | 04-Shared-Folders-Windows-Downloads-Mapped-to-Kali.jpg | Captured; downloads under Machine Folders, host Downloads path, Auto Mount Yes |
-| 05 — Kali manual IPv4 settings | 05-Kali-IPv4-10.0.0.2-24-Gateway-and-DNS.jpg | Captured; manual address, prefix, gateway, alternate DNS visible |
-| 06 — Kali browser Internet test | 06-Kali-Desktop-Internet-Browser-Test.jpg | Captured; live HTTPS Kali website loaded |
-| 07 — Clean snapshot | 07-VirtualBox-Clean-Setup-Snapshot.jpg | Captured; final verified baseline and powered-off VM visible |
+![VirtualBox NAT Network settings](screenshots/01-VirtualBox-NAT-Network-10.0.0.0-24.jpg)
 
-VirtualBox installation and Kali registration are also visible in the Manager/snapshot screenshot. Only one VM is registered, so there is no second lab VM using 10.0.0.2. Clipboard and actual shared-file checks passed in both directions. Drag-and-drop configuration is verified; a separate file-drag test was not required by this checklist and has not been claimed.
+### 3. Import Kali Linux
 
-## Troubleshooting experienced
+Extracted the Kali Linux prebuilt VirtualBox archive and registered the included `.vbox` virtual machine file.
 
-The initial DNS setting, 8.8.8.8, timed out. Kali could already reach both the lab gateway and an external numeric address, which narrowed the issue to name resolution. A direct DNS query to the NAT gateway at 10.0.0.1 succeeded. The connection was changed to this course-documented alternate DNS and reactivated. Kali then resolved the website and received HTTP/2 200 over HTTPS.
+### 4. Configure the Virtual Machine
 
-The course's conditional duplicate-address-detection workaround was not needed.
+Allocated 4 GB of RAM and two processor cores, then connected the Kali network adapter to `WK1-PM1-NAT`.
 
-The VirtualBox Manager settings dialog stalled during the initial setup. Configuration was applied and verified using VirtualBox's command-line interface. A missing host USB component was installed and its stale background service refreshed, clearing the device-discovery warning. On the later evidence audit, the Settings dialog opened successfully in Basic mode, allowing exact adapter, integration, and shared-folder screenshots to be captured. No specific cause for the earlier stall has been established. The recorded guest boot, network, share, and snapshot checks passed.
+![Kali VM network adapter settings](screenshots/02-Kali-VM-Network-Attached-to-NAT-Network.jpg)
 
-## Course submission status
+### 5. Enable Clipboard, Drag and Drop, and File Sharing
 
-**Awaiting participant review and official submission. Publishing status is not recorded in this repository.**
+Set the shared clipboard and drag-and-drop options to **Bidirectional**. Clipboard text transfers were tested successfully from Windows to Kali and from Kali to Windows.
 
-- [ ] Publish this README and the completed real screenshot set to GitHub or Google Drive.
-- [ ] Publish the LinkedIn account of the completed work, tag the specified course accounts, and include #Networkwalks. Keep IP addresses and links out of the post body; place the project link in the first comment.
-- [ ] Share the actual DNS troubleshooting experience in the instructor's project-video comments and save evidence of the posted comment.
-- [ ] Submit the official form with participant details, project link, and LinkedIn post link, then retain confirmation.
+![Bidirectional clipboard and drag-and-drop settings](screenshots/03-Kali-VM-Shared-Clipboard-and-Drag-and-Drop.jpg)
 
-The Program Guide lists Friday 11:59 p.m. Dubai time as the deadline (Friday, October 30, 2026, for this week); confirm any instructor updates. The Week 1 video is https://www.youtube.com/watch?v=K6rMQdg10Zk. The final public project/post links and participant account confirmation remain to finalize submission.
+Added the Windows Downloads folder as a permanent shared folder named `downloads` with automatic mounting enabled. A test file created in Windows was opened and edited in Kali, and the updated file was then read from Windows.
 
-## Authorized use
+![Windows Downloads shared-folder settings](screenshots/04-Shared-Folders-Windows-Downloads-Mapped-to-Kali.jpg)
 
-This setup and its checks are restricted to an owned lab environment. No third-party scanning or exploitation was performed.
+The host's personal Windows folder path is obscured in the shared-folder screenshot. The shared-folder name and configuration remain visible.
 
-## Official software sources
+### 6. Assign the Kali Linux IP Address
 
-- [Oracle VirtualBox downloads](https://www.virtualbox.org/wiki/Downloads)
-- [Kali prebuilt virtual machines](https://www.kali.org/get-kali/#kali-virtual-machines)
-- [Kali's prebuilt VirtualBox import instructions](https://www.kali.org/docs/virtualization/import-premade-virtualbox/)
+Configured the Kali wired connection with a manual IPv4 address of `10.0.0.2/24`, gateway `10.0.0.1`, and DNS server `10.0.0.1`.
+
+![Kali Linux manual IPv4 configuration](screenshots/05-Kali-IPv4-10.0.0.2-24-Gateway-and-DNS.jpg)
+
+### 7. Test Network Connectivity
+
+Verified the Kali IP address and routing, tested gateway reachability, confirmed DNS resolution, and loaded the Kali Linux website through HTTPS in Firefox. Shared-folder read/write operations and bidirectional clipboard transfers also passed.
+
+![Kali Linux Firefox internet connectivity test](screenshots/06-Kali-Desktop-Internet-Browser-Test.jpg)
+
+### 8. Save and Restore a Clean Snapshot
+
+Shut down the VM and created the snapshot **Clean Kali - WK1-PM1**. Restored it and rebooted the guest to verify that the static IP configuration, DNS, HTTPS access, and shared folder still worked. After final tests, shut down the guest and saved **Clean Kali - WK1-PM1 - Verified** as the final baseline.
+
+![VirtualBox clean baseline snapshot](screenshots/07-VirtualBox-Clean-Setup-Snapshot.jpg)
+
+## Verification Results
+
+| Check | Result |
+|---|---|
+| Manual IP and default route | Passed |
+| Gateway connectivity | Passed |
+| DNS resolution | Passed after changing the DNS server to `10.0.0.1` |
+| HTTPS connectivity | Passed; website responded with HTTP/2 200 |
+| Shared clipboard | Passed in both directions |
+| Shared Downloads folder | Read/write test passed in both directions |
+| Drag and drop | Enabled in both directions; a separate file-drag test was not performed |
+| Snapshot restore | Passed; network access and shared folder remained functional |
+
+Additional results are available in the repository:
+
+- [Network and internet verification](verification.txt)
+- [Clipboard transfer verification](clipboard-verification.json)
+- [Shared-folder verification](shared-folder-verification.json)
+- [Snapshot details](snapshot.txt)
+- [Post-restore verification](post-restore-verification.txt)
+- [Virtual machine configuration](vm-configuration.txt)
+
+## Troubleshooting
+
+### DNS Resolution
+
+The initial DNS server, `8.8.8.8`, timed out even though Kali could reach the network gateway and an external numeric IP address. A DNS query sent to the NAT gateway at `10.0.0.1` succeeded, indicating that the problem involved DNS resolution rather than general network access.
+
+After changing the DNS server to `10.0.0.1` and reconnecting the wired connection, domain resolution and HTTPS access worked normally.
+
+### VirtualBox Settings Window
+
+The VirtualBox Manager settings window initially stalled. VirtualBox command-line tools were used to apply and verify the configuration. A missing host USB component was installed, and its background service was refreshed to clear a device-discovery warning.
+
+The Settings window later opened normally, allowing the network, clipboard, and shared-folder settings to be captured. The original cause of the window stall was not established.
+
+## Lab Scope
+
+The configuration and connectivity checks were performed in an owned virtual lab environment. No unauthorized systems were scanned or accessed.
+
+## Software Sources
+
+- [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [Kali Linux Virtual Machines](https://www.kali.org/get-kali/#kali-virtual-machines)
+- [Kali Linux VirtualBox Import Guide](https://www.kali.org/docs/virtualization/import-premade-virtualbox/)
